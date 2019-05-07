@@ -138,3 +138,17 @@ def complement_sky(pano):
     img = np.vstack((tmp[:,:], img[border+100:,:]))
 
     return img
+
+
+if __name__ == '__main__':
+    start = time.time()
+    files = os.listdir(DIR)
+    pano = stitch(files)
+    if pano is not None:
+        pano = crop(pano)
+        # pano = complement_sky(pano)
+        cv2.imwrite(RESULT, pano)
+    else:
+        print('error')
+    end = time.time()
+    print('cost ' + str(end-start))
