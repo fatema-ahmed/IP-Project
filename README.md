@@ -18,6 +18,12 @@ Panoramic pictures can be aquired by SIFT, projective transformation, image resi
 # Description:
 A mobile application that take live photos you want and create the 360o panoramic degree you want and been saved in your gallery.
 
+# Link On Drive:
+https://drive.google.com/open?id=19-fyGK-dozAdIwdAlbO-uQL-TLuV0UVp
+
+# Demo On Youtube:
+https://www.youtube.com/watch?v=SKlC4PPbCzQ&feature=share
+
 # Input Pictures:
 
 ![59758917_389524228304259_34342726002540544_n](https://user-images.githubusercontent.com/33998585/57282853-32c67c80-70ae-11e9-82f5-9c9d63255fdd.jpg)
