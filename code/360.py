@@ -98,3 +98,43 @@ def crop(img):
 
     tmp = tmp[0:height, left:right]
     return tmp
+
+def complement_sky(pano):
+    tmp = imutils.resize(pano, width=WIDTH)
+    rows, cols = tmp.shape[:2]
+    border = HEIGHT - rows
+
+    sky = cv2.imread('sky.jpg')
+    sky = imutils.resize(sky, width=WIDTH)
+    sky_rows = sky.shape[0]
+    start = sky_rows - border
+    sky = sky[start:sky_rows]
+
+    img = np.vstack((sky[:,:], tmp[:,:]))
+
+    mark = np.zeros((HEIGHT, WIDTH), np.uint8)
+    color = (0, 0, 0)
+    mark[0:border,0:cols] = 255
+
+    img = cv2.inpaint(img, mark, 3, cv2.INPAINT_TELEA)
+
+    tmp_sky = img[0:border,:]
+    sky = cv2.addWeighted(tmp_sky, 0.7, sky, 0.3, 0.0)
+    img = np.vstack((sky[:,:], img[border:,:]))
+
+    start = border - 1
+    end = start - 100
+    blend = 0.01
+    for r in range(start, end, -1):
+        img[r,:] = tmp[0,:] * (1 - blend) + sky[r,:] * blend
+        blend = blend + 0.01
+
+
+    rows, cols = img.shape[:2]
+    img = img[1:,1:cols-1]
+
+    tmp = img[0:border+100, :]
+    tmp = cv2.GaussianBlur(tmp, (9, 9), 2.5)
+    img = np.vstack((tmp[:,:], img[border+100:,:]))
+
+    return img
