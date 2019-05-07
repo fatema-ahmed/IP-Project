@@ -16,5 +16,7 @@ Based on computer vision and image processing knowledge, we learned how to apply
 Panoramic pictures can be aquired by SIFT, projective transformation, image resizing and image stitching.It is a group of steps to reach your required resolution.
 
 # Description:
-A mobile application that take live photos you want and create the 360o panoramic degree you want and been saved in your gallery.
+A mobile application that take live photos you want and create the 360° panoramic degree you want and been saved in your gallery.
 
+# Link On Drive:
+https://drive.google.com/file/d/19-fyGK-dozAdIwdAlbO-uQL-TLuV0UVp/view?fbclid=IwAR0h88uKeI0_ZCteFGVQDkGafBd5RaOf1VsVNFg0VfPv7HYt9PVSgfwXS3I
