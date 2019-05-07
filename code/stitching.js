@@ -10,6 +10,37 @@ public class Stitching {
     static String result_name = "result.jpg";
 
 
+    public static void main(String[] args) {
+        int retval = parseCmdArgs(args);
+        if (retval != 0) {
+            System.exit(-1);
+        }
+
+        Mat pano = new Mat();
+        Stitcher stitcher = Stitcher.createDefault(try_use_gpu);
+        int status = stitcher.stitch(imgs, pano);
+
+        if (status != Stitcher.OK) {
+            System.out.println("Can't stitch images, error code = " + status);
+            System.exit(-1);
+        }
+
+        imwrite(result_name, pano);
+
+        System.out.println("Images stitched together to make " + result_name);
+    }
+
+    static void printUsage() {
+        System.out.println(
+            "Rotation model images stitcher.\n\n"
+          + "stitching img1 img2 [...imgN]\n\n"
+          + "Flags:\n"
+          + "  --try_use_gpu (yes|no)\n"
+          + "      Try to use GPU. The default value is 'no'. All default values\n"
+          + "      are for CPU mode.\n"
+          + "  --output <result_img>\n"
+          + "      The default is 'result.jpg'.");
+    }
 
     static int parseCmdArgs(String[] args) {
         if (args.length == 0) {
